@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        navigationController?.isNavigationBarHidden = true
     
         
         
@@ -32,8 +33,7 @@ class ViewController: UIViewController {
                 else{
                     
                     //Segue
-                    print("Welcome")
-                    print(user?.username)
+                    self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
                     
                     
                 }
@@ -67,6 +67,8 @@ class ViewController: UIViewController {
                 else{
                     //Segue
                     print("OK")
+                    self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
+
                 }
             }
             
