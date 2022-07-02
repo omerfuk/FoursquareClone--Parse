@@ -10,42 +10,59 @@ import Parse
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var usernameText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
        
-    /*    let parseObject = PFObject(className: "Fruits")
-        parseObject["name"] = "Banana"
-        parseObject["calories"] = 150
+    
         
-        parseObject.saveInBackground { success, error in
+        
+        
+    }
+    @IBAction func signInClicked(_ sender: Any) {
+        
+        
+        
+    }
+    
+    @IBAction func signUpClicked(_ sender: Any) {
+        
+        if usernameText.text != "" && passwordText.text != "" {
             
-            if error != nil {
-                print(error?.localizedDescription)
+            //creating User
+            
+            let user = PFUser()
+            user.username = usernameText.text!
+            user.password = passwordText.text!
+            
+            user.signUpInBackground { success, error in
+                
+                if error != nil {
+                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+                }
+                else{
+                    //Segue
+                    print("OK")
+                }
             }
-            else{
-                print("uploaded")
-            }
+            
         }
-        
-     */
-        
-        //Fetching data from Parse
-        
-        let query = PFQuery(className: "Fruits")
-        //query.whereKey("name", equalTo: "Apple")
-        query.whereKey("calories", greaterThan: 120)
-        query.findObjectsInBackground { objects, error in
-            
-            if error != nil {
-                print(error?.localizedDescription)
-            }
-            else{
-                print(objects)
-            }
+        else{
+            makeAlert(title: "Error", message: "Username/Password")
         }
         
     }
-
-
+    
 }
 
+extension ViewController {
+    
+    func makeAlert(title:String, message:String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+}
