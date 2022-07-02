@@ -16,7 +16,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
        
         navigationController?.isNavigationBarHidden = true
-    
+        
+        let currentUser = PFUser.current()
+        
+        if currentUser != nil {
+            print(currentUser)
+            performSegue(withIdentifier: "toPlacesVC", sender: nil)
+        }
         
         
         
