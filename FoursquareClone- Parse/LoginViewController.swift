@@ -8,7 +8,7 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var usernameText: UITextField!
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController {
+extension LoginViewController {
     
     func makeAlert(title:String, message:String) {
         
